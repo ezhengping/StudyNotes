@@ -10,6 +10,7 @@
 | ^                          | `docker info`      |
 | ^                          | `docker version`   |
 
+
 #### 镜像相关
 | 用途             | 命令                                                 |
 | ---------------- | ---------------------------------------------------- |
@@ -36,7 +37,7 @@
 ### 数据管理相关           
 | 用途                     | 命令                                                                                                       |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------- |
-| 数据卷管理               | `docker volume COMMAND`                                                                                  |
+| 数据卷管理               | `docker volume COMMAND`                                                                                    |
 | 创建数据卷               | `docker volume create [OPTIONS] [VOLUME]`                                                                  |
 | 查看数据卷列表           | `docker volume ls [OPTIONS]`                                                                               |
 | 查看数据卷信息           | `docker volume inspect [OPTIONS] VOLUME [VOLUME...]`                                                       |
@@ -61,3 +62,17 @@ $ docker run -d -P \
 
 上面的命令加载主机的 `/src/webapp` 目录到容器的 `/opt/webapp`目录。这个功能在进行测试的时候十分方便，比如用户可以放置一些程序到本地目录中，来查看容器是否正常工作。本地目录的路径必须是绝对路径，以前使用 `-v` 参数时如果本地目录不存在 Docker 会自动为你创建一个文件夹，现在使用 `--mount` 参数时如果本地目录不存在，Docker 会报错。
 
+* **拷贝配置文件到镜像**
+```
+# liunx 使用
+# -v /src/webapp:/opt/webapp:ro \
+# windows使用
+# -v //c/user/目录:/opt/webapp:ro \
+```
+
+
+###拷贝容器里的文件
+| 用途                                    | 命令                                                         |
+| --------------------------------------- | ------------------------------------------------------------ |
+| 在容器和本地文件系统之间复制文件/文件夹 | `docker container cp [OPTIONS] CONTAINER:SRC_PATH DEST_PATH` |
+| ^                                       | `docker cp [OPTIONS] SRC_PATH|- CONTAINER:DEST_PATH`         |
